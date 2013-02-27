@@ -14,7 +14,7 @@ require_once( JPATH_ROOT .'/components/com_community/libraries/core.php' );
 require_once (dirname(__FILE__).'/helper.php');
 
 
-//JPlugin::loadLanguage('mod_latestmembersfromgroups', JPATH_ROOT);
+//JPlugin::loadLanguage('mod_groupmembers', JPATH_ROOT);
 //JPlugin::loadLanguage( 'com_community', JPATH_ROOT );
 
 $document = JFactory::getDocument();
@@ -45,4 +45,4 @@ $js	= '/assets/script-1.2.min.js';
 CAssets::attach($js, 'js');
 
 	
-require(JModuleHelper::getLayoutPath('mod_latestmembersfromgroups'));
+require(JModuleHelper::getLayoutPath('mod_groupmembers'));
