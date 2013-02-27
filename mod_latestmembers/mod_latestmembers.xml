@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE install SYSTEM "http://dev.joomla.org/xml/1.5/module-install.dtd">
 <extension version="2.5" type="module" client="site" method="upgrade">
-	<name>Community - Latest Members</name>
-	<author>JomSocial Team</author>
-	<creationDate>March 2011</creationDate>
-	<copyright>Copyright (C) 2008 - 2010 JomSocial. All rights reserved.</copyright>
+	<name>Community - Latest Members from Given Groups</name>
+	<author>Jean-Marie Favre(JFE)</author>
+	<creationDate>February 2013</creationDate>
+	<copyright>Modified by JFE, based on Jomsocial</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>support@jomsocial.com</authorEmail>
 	<authorUrl>http://www.jomsocial.com</authorUrl>	
-	<version>2.8.3</version>
-	<description>Show the latest members</description>
+	<version>2.8.3 - JFE</version>
+	<description>Show the latest members for given groups</description>
 	<languages>
-		<language tag="en-GB">en-GB.mod_latestmembers.ini</language>
+		<language tag="en-GB">en-GB.mod_latestmembersfromgroups.ini</language>
 	</languages>
 	<files>
-		<filename module="mod_latestmembers">mod_latestmembers.php</filename>
-		<filename>mod_latestmembers.xml</filename>
+		<filename module="mod_latestmembersfromgroups">mod_latestmembersfromgroups.php</filename>
+		<filename>mod_latestmembersfromgroups.xml</filename>
 		<filename>helper.php</filename>
 		<folder>tmpl</folder>
 	</files>
-	<params>
+        <params>
 		<param name="cache" type="list" default="1" label="Caching" description="Select whether to cache the content of this module">
 			<option value="1">Use global</option>
 			<option value="0">No caching</option>
@@ -33,6 +33,7 @@
 			<option value="1">Yes</option>
 		</param>
 		<param name="count" type="text" default="10" label="Count" description="The number of online user(s) to display (default is 10)" />		
+    <param name="groupspec" type="text" default="" label="Groups" description="Groups id separated by commas" />		
 		<param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
 		<param name="loadmootools" type="list" default="1" label="Load mootools" description="Select YES for the module to load mootools, and NO to rely on the template to load it">
 			<option value="0">No</option>
@@ -56,6 +57,9 @@
 					<option value="1">Yes</option>
 				</field>
 				<field name="count" type="text" default="10" label="Count" description="The number of online user(s) to display (default is 10)" />		
+				<field name="groupspec" type="text" default="" label="Groups" description="Groups id separated by commas" />
+                                <field name="community_server" type="text" default="" label="Community server" description="URL of the server used to generate member url" />
+                                <field name="member_url_segment" type="text" default="" label="Member url pattern" description="Pattern " /> 
 				<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
 				<field name="loadmootools" type="list" default="1" label="Load mootools" description="Select YES for the module to load mootools, and NO to rely on the template to load it">
 					<option value="0">No</option>

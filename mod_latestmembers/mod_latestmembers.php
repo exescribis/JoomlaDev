@@ -14,7 +14,7 @@ require_once( JPATH_ROOT .'/components/com_community/libraries/core.php' );
 require_once (dirname(__FILE__).'/helper.php');
 
 
-//JPlugin::loadLanguage('mod_latestmembers', JPATH_ROOT);
+//JPlugin::loadLanguage('mod_latestmembersfromgroups', JPATH_ROOT);
 //JPlugin::loadLanguage( 'com_community', JPATH_ROOT );
 
 $document = JFactory::getDocument();
@@ -22,11 +22,12 @@ $document->addStyleSheet(rtrim(JURI::root(), '/').'/components/com_community/ass
 
 $usermodel 				= CFactory::getModel('user');
 $display_limit 			= $params->get('count',10);
+$selected_groups  = $params->get('groupspec','') ;
 $updated_avatar_only	= $params->get('updated_avatar_only', 0);
 $tooltips 				= $params->get('tooltips', 1);
 $config					= CFactory::getConfig();
 
-$row = getLatestMember($display_limit, $updated_avatar_only);
+$row = getLatestMemberFromGroups($display_limit, $updated_avatar_only,$selected_groups);
 
 // preload users
 $CFactoryMethod = get_class_methods('CFactory');					
@@ -44,4 +45,4 @@ $js	= '/assets/script-1.2.min.js';
 CAssets::attach($js, 'js');
 
 	
-require(JModuleHelper::getLayoutPath('mod_latestmembers'));
+require(JModuleHelper::getLayoutPath('mod_latestmembersfromgroups'));

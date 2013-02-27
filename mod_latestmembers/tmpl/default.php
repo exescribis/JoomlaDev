@@ -6,6 +6,9 @@
  * @license		GNU/GPL, see LICENSE.php
  */
 defined('_JEXEC') or die('Restricted access');
+$community_server   = $params->get('community_server','') ;
+$member_url_segment = $params->get('member_url','index.php?option=com_community&view=profile&userid=') ;
+$member_url_pattern = $community_server.'/'.$member_url_segment ;
 ?>
 <div id="cModule-LatestMembers" class="cMods cMods-LatestMembers<?php echo $params->get('moduleclass_sfx'); ?>">
 	<?php
@@ -18,7 +21,7 @@ defined('_JEXEC') or die('Restricted access');
 		{
 			$user 		= CFactory::getUser($data->id);				
 			$userName 	= CStringHelper::escape( $user->getDisplayName() );
-			$userLink 	= CRoute::_('index.php?option=com_community&view=profile&userid='.$data->id);
+			$userLink 	= CRoute::_($member_url_pattern.$data->id);
 			
 			$html = '	<a href="'.$userLink.'">';
 			if($tooltips)
@@ -33,9 +36,6 @@ defined('_JEXEC') or die('Restricted access');
 			echo $html;
 		}
 		?>
-	</div>
-	<div class="cMod-ThumbsAll clearfix">
-		<a style='float:right;' href='<?php echo CRoute::_("index.php?option=com_community&view=search&task=browse&sort=latest"); ?>'><?php echo JText::_("SHOW_ALL"); ?></a>
 	</div>
 	<?php
 	}

@@ -7,9 +7,9 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-if( !function_exists('getLatestMember') )
+if( !function_exists('getLatestMemberFromGroups') )
 {
-	function getLatestMember($limit = 15, $updated_avatar_only)
+	function getLatestMemberFromGroups($limit = 15, $updated_avatar_only, $groupspec)
 	{
 		$db	 = JFactory::getDBO();
 		
@@ -26,7 +26,7 @@ if( !function_exists('getLatestMember') )
 		$config		= CFactory::getConfig();
 		if( !$config->get( 'privacy_show_admins') )
 		{
-		    $userModel		= CFactory::getModel( 'User' );
+		  $userModel		= CFactory::getModel( 'User' );
 			$tmpAdmins		= $userModel->getSuperAdmins();
 
 			$admins         = array();
@@ -40,9 +40,12 @@ if( !function_exists('getLatestMember') )
 			}
 			$condition  .= ')';
 		}		
-		
-		$query	= 'SELECT * FROM ' . $db->quoteName( '#__users' ) . ' AS a ' 
+                if ( $groupspec!=="" ) {
+                  $condition .= " AND ".$db->quoteName('groupid').' IN(' . $groupspec . ") " ;
+                }
+		$query	= 'SELECT DISTINCT a.'.$db->quoteName('id').' FROM ' . $db->quoteName( '#__users' ) . ' AS a ' 
 				. 'INNER JOIN ' . $db->quoteName( '#__community_users' ) . ' AS b ON a.' . $db->quoteName( 'id' ) . ' = b.' . $db->quoteName( 'userid' ) . ' '
+        . 'INNER JOIN ' . $db->quoteName( '#__community_groups_members' ) . ' AS c ON c.' .$db->quoteName('memberid') . ' = b.' . $db->quoteName( 'userid' ) . ' '
 				. 'WHERE a.' . $db->quoteName( 'block' ) . ' = ' . $db->Quote( 0 ) . ' '
 				. $condition
 				. 'ORDER BY a.' . $db->quoteName( 'registerDate' ) . ' '
