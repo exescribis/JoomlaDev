@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE install SYSTEM "http://dev.joomla.org/xml/1.5/module-install.dtd">
 <extension version="2.5" type="module" client="site" method="upgrade">
-	<name>Community - Latest Members from Given Groups</name>
+	<name>Community - Group Members</name>
 	<author>Jean-Marie Favre(JFE)</author>
 	<creationDate>February 2013</creationDate>
 	<copyright>Modified by JFE, based on Jomsocial</copyright>
@@ -9,7 +9,7 @@
 	<authorEmail>support@jomsocial.com</authorEmail>
 	<authorUrl>http://www.jomsocial.com</authorUrl>	
 	<version>2.8.3 - JFE</version>
-	<description>Show the latest members for given groups</description>
+	<description>Show the (latest) members of given groups</description>
 	<languages>
 		<language tag="en-GB">en-GB.mod_groupmembers.ini</language>
 	</languages>
